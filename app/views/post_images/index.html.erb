@@ -2,7 +2,10 @@
 <!-- post_image変数へ格納する -->
 <% @post_images.each do |post_image| %>
 <div>
- <%= image_tag post_image.get_image %>
+ <%= link_to post_image_path(post_image.id) do %>
+  <%= image_tag post_image.get_image %>
+ <% end %>
+
  <!-- ダウンロードした画像を使用 -->
  <p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>
  <!-- post_image変数のshop_nameカラムを表示 -->
