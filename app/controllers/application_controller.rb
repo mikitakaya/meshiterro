@@ -5,7 +5,7 @@ before_action :configure_permitted_parameters, if: :devise_controller?
 
  # サインイン後にAboutページに遷移する
  def after_sign_in_path_for(resource)
-  about_path
+  post_images_path
  end
 
  # サインアウト後にAboutページに遷移する

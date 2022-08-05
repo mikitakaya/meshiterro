@@ -1,9 +1,15 @@
+<!-- コントローラから渡された@post_images変数内から1つずつ取り出し -->
+<!-- post_image変数へ格納する -->
 <% @post_images.each do |post_image| %>
 <div>
  <%= image_tag post_image.get_image %>
+ <!-- ダウンロードした画像を使用 -->
  <p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>
+ <!-- post_image変数のshop_nameカラムを表示 -->
  <p>ショップ名：<%= post_image.shop_name %></p>
+ <!-- post_image変数のcaptionカラムを表示 -->
  <p>説明：<%= post_image.caption %></p>
+ <!-- post_image変数のuser_idに関連付けられているuserモデルのnameカラムを表示 -->
  <p>ユーザーネーム：<%= post_image.user.name %></p>
 </div>
 <% end %>
