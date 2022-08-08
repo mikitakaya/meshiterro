@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
  def show
   @user = User.find(params[:id])
-  # 個人が投稿したもの全てを表示する
+  # 1ページ分の決められた数のデータだけを、新しい順に取得する
   @post_images = @user.post_images.page(params[:id])
  end
 
