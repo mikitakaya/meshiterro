@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # profile_imageという名前でActiveStorageでプロフィール画像を保存できるように設定
+  has_one_attached :profile_image
+
   # User モデルに PostImage モデルを関連付ける(1:N)
   # 1:Nの1側(user)が削除されたとき、N側(post_images複数形)を全て削除する
   has_many :post_images, dependent: :destroy
@@ -11,8 +14,7 @@ class User < ApplicationRecord
   # UserモデルにPostCommentモデルとの1:Nの関係を実装する
   has_many :post_comments, dependent: :destroy
 
-  # profile_imageという名前でActiveStorageでプロフィール画像を保存できるように設定
-  has_one_attached :profile_image
+  has_many :favorites, dependent: :destroy
 
   def get_profile_image(width, height)
    unless profile_image.attached?
