@@ -1,7 +1,10 @@
 class PostImage < ApplicationRecord
  has_one_attached :image
+
 # ユーザー（1:Nの1だから単数形）に属する
  belongs_to :user
+
+ has_many :post_comments, dependent: :destroy
 
  def get_image
   unless image.attached?

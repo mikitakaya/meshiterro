@@ -8,6 +8,9 @@ class User < ApplicationRecord
   # 1:Nの1側(user)が削除されたとき、N側(post_images複数形)を全て削除する
   has_many :post_images, dependent: :destroy
 
+  # UserモデルにPostCommentモデルとの1:Nの関係を実装する
+  has_many :post_comments, dependent: :destroy
+
   # profile_imageという名前でActiveStorageでプロフィール画像を保存できるように設定
   has_one_attached :profile_image
 
