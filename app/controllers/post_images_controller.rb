@@ -10,9 +10,13 @@ class PostImagesController < ApplicationController
   @post_image = PostImage.new(post_image_params)
   # PostImageモデルに紐づいたuser_idの値を操作し、ログイン中のユーザーidを取得する
   @post_image.user_id = current_user.id
-  @post_image.save
+  if @post_image.save
   # index（投稿一覧画面）にリダイレクト
-  redirect_to post_images_path
+   redirect_to post_images_path
+  else
+   # post_images/new.html.erbが表示され投稿ページを再表示
+   render :new
+  end
  end
 
  def index
