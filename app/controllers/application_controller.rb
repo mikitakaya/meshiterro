@@ -1,7 +1,11 @@
 class ApplicationController < ActionController::Base
-  # devise利用の機能（ユーザ登録、ログイン認証など）が使われる前に
-  # 下に記述したconfigure_permitted_parametersメソッドが実行される
-before_action :configure_permitted_parameters, if: :devise_controller?
+
+ # 未ログイン状態でトップページ以外の画面にアクセスすると、ログイン画面へリダイレクト
+ before_action :authenticate_user!, except: [:top]
+
+ # devise利用の機能（ユーザ登録、ログイン認証など）が使われる前に
+ # 下に記述したconfigure_permitted_parametersメソッドが実行される
+ before_action :configure_permitted_parameters, if: :devise_controller?
 
  # サインイン後にAboutページに遷移する
  def after_sign_in_path_for(resource)
